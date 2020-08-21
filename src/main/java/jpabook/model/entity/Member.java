@@ -1,12 +1,11 @@
 package jpabook.model.entity;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import org.hibernate.annotations.GeneratorType;
 
-/**
- * Created by holyeye on 2014. 3. 11..
- */
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Member {
@@ -15,13 +14,11 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id;
 
-    private String name;
+    private  String name;
 
     private String city;
     private String street;
     private String zipcode;
-
-    //Getter, Setter
 
     public Long getId() {
         return id;

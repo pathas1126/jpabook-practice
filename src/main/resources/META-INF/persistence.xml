@@ -18,6 +18,8 @@
             <!-- 실행되는 SQL 을 이쁘게 보여줌 -->
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
+            <!--   테이블 자동 생성 시 카멜 케이스 필드명을 스네이크 케이스 컬럼명으로 매핑  -->
+            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
         </properties>
     </persistence-unit>
 
