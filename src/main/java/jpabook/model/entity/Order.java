@@ -17,7 +17,7 @@ public class Order {
     private Date orderDate;
 
     @Enumerated(EnumType.STRING)
-    private String status;
+    private OrderStatus status;
 
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 }
