@@ -1,9 +1,11 @@
 package jpabook.model.entity;
 
+import jpabook.model.entity.item.Item;
+
 import javax.persistence.*;
 
 @Entity
-public class ItemCategory {
+public class ItemCategory extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "ITEM_CATEGORY_ID")

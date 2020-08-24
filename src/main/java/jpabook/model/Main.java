@@ -1,6 +1,10 @@
 package jpabook.model;
 
 import jpabook.model.entity.*;
+import jpabook.model.entity.item.Album;
+import jpabook.model.entity.item.Book;
+import jpabook.model.entity.item.Item;
+import jpabook.model.entity.item.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,34 +29,36 @@ public class Main {
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
 
+            Album album = new Album();
+            album.setArtist("ME");
+            em.persist(album);
+
+            Book book = new Book();
+            book.setAuthor("ME");
+            em.persist(book);
+
+            Movie movie = new Movie();
+            movie.setDirector("ME");
+            em.persist(movie);
+
 
             Category category1 = new Category();
-            category1.setName("fruits");
+            category1.setName("MOVIE");
             em.persist(category1);
 
             Category category2 = new Category();
-            category2.setName("apples");
+            category2.setName("ALBUM");
             category2.setParent(category1);
             em.persist(category2);
 
-            Item item1 = new Item();
-            item1.setName("hi");
-            item1.setPrice(500);
-            em.persist(item1);
-
-            Item item2 = new Item();
-            item2.setName("hello");
-            item2.setPrice(5000);
-            em.persist(item2);
-
             ItemCategory itemCategory1 = new ItemCategory();
-            itemCategory1.setItem(item1);
+            itemCategory1.setItem(album);
             itemCategory1.setCategory(category1);
             em.persist(itemCategory1);
 
             ItemCategory itemCategory2 = new ItemCategory();
-            itemCategory2.setItem(item2);
-            itemCategory2.setCategory(category1);
+            itemCategory2.setItem(movie);
+            itemCategory2.setCategory(category2);
             em.persist(itemCategory2);
 
             tx.commit();//트랜잭션 커밋
