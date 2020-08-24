@@ -1,5 +1,9 @@
 package jpabook.model;
 
+import jpabook.model.entity.Member;
+import jpabook.model.entity.Order;
+import jpabook.model.entity.OrderItem;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -22,6 +26,28 @@ public class Main {
 
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
+            Member member1 = new Member();
+            member1.setName("himan");
+            member1.setCity("city");
+            member1.setStreet("street");
+            member1.setZipcode("93511");
+            em.persist(member1);
+
+            Order order1 = new Order();
+            order1.setMember(member1);
+            em.persist(order1);
+
+            Order order2 = new Order();
+            order2.setMember(member1);
+            em.persist(order2);
+
+            OrderItem orderItem1 = new OrderItem();
+            orderItem1.setOrder(order1);
+            orderItem1.setOrder(order2);
+            em.persist(orderItem1);
+
+
+
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
