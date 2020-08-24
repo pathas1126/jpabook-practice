@@ -1,8 +1,6 @@
 package jpabook.model;
 
-import jpabook.model.entity.Member;
-import jpabook.model.entity.Order;
-import jpabook.model.entity.OrderItem;
+import jpabook.model.entity.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,27 +24,36 @@ public class Main {
 
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
-            Member member1 = new Member();
-            member1.setName("himan");
-            member1.setCity("city");
-            member1.setStreet("street");
-            member1.setZipcode("93511");
-            em.persist(member1);
-
-            Order order1 = new Order();
-            order1.setMember(member1);
-            em.persist(order1);
-
-            Order order2 = new Order();
-            order2.setMember(member1);
-            em.persist(order2);
-
-            OrderItem orderItem1 = new OrderItem();
-            orderItem1.setOrder(order1);
-            orderItem1.setOrder(order2);
-            em.persist(orderItem1);
 
 
+            Category category1 = new Category();
+            category1.setName("fruits");
+            em.persist(category1);
+
+            Category category2 = new Category();
+            category2.setName("apples");
+            category2.setParent(category1);
+            em.persist(category2);
+
+            Item item1 = new Item();
+            item1.setName("hi");
+            item1.setPrice(500);
+            em.persist(item1);
+
+            Item item2 = new Item();
+            item2.setName("hello");
+            item2.setPrice(5000);
+            em.persist(item2);
+
+            ItemCategory itemCategory1 = new ItemCategory();
+            itemCategory1.setItem(item1);
+            itemCategory1.setCategory(category1);
+            em.persist(itemCategory1);
+
+            ItemCategory itemCategory2 = new ItemCategory();
+            itemCategory2.setItem(item2);
+            itemCategory2.setCategory(category1);
+            em.persist(itemCategory2);
 
             tx.commit();//트랜잭션 커밋
 

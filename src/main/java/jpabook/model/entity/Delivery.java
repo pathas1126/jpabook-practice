@@ -1,31 +1,25 @@
 package jpabook.model.entity;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Member {
+public class Delivery {
 
     @Id @GeneratedValue
-    @Column(name = "MEMBER_ID")
+    @Column(name = "DELIVERY_ID")
     private Long id;
 
-    private  String name;
+    @OneToOne(mappedBy = "delivery")
+    private Order order;
 
     private String city;
+
     private String street;
+
     private String zipcode;
 
-    @OneToMany(mappedBy = "member")
-    private final List<Order> orders = new ArrayList<Order>();
-
-    public void addOrders(Order order) {
-        orders.add(order);
-        order.setMember(this);
-    }
+    @Enumerated
+    private DeliveryStatus deliveryStatus;
 
     public Long getId() {
         return id;
@@ -35,12 +29,12 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public String getCity() {
@@ -67,9 +61,11 @@ public class Member {
         this.zipcode = zipcode;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public DeliveryStatus getDeliveryStatus() {
+        return deliveryStatus;
     }
 
-
+    public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
+    }
 }

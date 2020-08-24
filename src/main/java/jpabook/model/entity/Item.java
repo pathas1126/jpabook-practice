@@ -1,6 +1,8 @@
 package jpabook.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Item {
@@ -12,6 +14,19 @@ public class Item {
     private String name;
     private int price;
     private int stockQuantity;
+
+
+    @OneToMany(mappedBy = "item")
+    private final List<ItemCategory> itemCategories = new ArrayList<ItemCategory>();
+
+    public void addItemCategories(ItemCategory itemCategory){
+        itemCategories.add(itemCategory);
+        itemCategory.setItem(this);
+    }
+
+    public List<ItemCategory> getItemCategories() {
+        return itemCategories;
+    }
 
     public Long getId() {
         return id;
