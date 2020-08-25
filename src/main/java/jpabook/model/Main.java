@@ -28,38 +28,18 @@ public class Main {
 
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
+            Delivery delivery = new Delivery();
+            delivery.setCity("스울");
+            OrderItem orderItem1 = new OrderItem();
+            orderItem1.setOrderPrice(505050);
+            OrderItem orderItem2 = new OrderItem();
+            orderItem2.setOrderPrice(91051);
 
-            Album album = new Album();
-            album.setArtist("ME");
-            em.persist(album);
-
-            Book book = new Book();
-            book.setAuthor("ME");
-            em.persist(book);
-
-            Movie movie = new Movie();
-            movie.setDirector("ME");
-            em.persist(movie);
-
-
-            Category category1 = new Category();
-            category1.setName("MOVIE");
-            em.persist(category1);
-
-            Category category2 = new Category();
-            category2.setName("ALBUM");
-            category2.setParent(category1);
-            em.persist(category2);
-
-            ItemCategory itemCategory1 = new ItemCategory();
-            itemCategory1.setItem(album);
-            itemCategory1.setCategory(category1);
-            em.persist(itemCategory1);
-
-            ItemCategory itemCategory2 = new ItemCategory();
-            itemCategory2.setItem(movie);
-            itemCategory2.setCategory(category2);
-            em.persist(itemCategory2);
+            Order order = new Order();
+            order.setDelivery(delivery);
+            order.addOrderItems(orderItem1);
+            order.addOrderItems(orderItem2);
+            em.persist(order);
 
             tx.commit();//트랜잭션 커밋
 
