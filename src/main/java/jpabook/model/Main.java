@@ -1,5 +1,6 @@
 package jpabook.model;
 
+import com.mysema.query.jpa.impl.JPAQuery;
 import jpabook.model.entity.*;
 import jpabook.model.entity.item.Album;
 import jpabook.model.entity.item.Book;
@@ -10,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 /**
  * Created by 1001218 on 15. 4. 5..
@@ -28,19 +30,8 @@ public class Main {
 
             tx.begin(); //트랜잭션 시작
             //TODO 비즈니스 로직
-            Delivery delivery = new Delivery();
-            delivery.setCity("스울");
-            OrderItem orderItem1 = new OrderItem();
-            orderItem1.setOrderPrice(505050);
-            OrderItem orderItem2 = new OrderItem();
-            orderItem2.setOrderPrice(91051);
-
-            Order order = new Order();
-            order.setDelivery(delivery);
-            order.addOrderItems(orderItem1);
-            order.addOrderItems(orderItem2);
-            em.persist(order);
-
+            Member member = em.find(Member.class, 2L);
+            member.setName("hi");
             tx.commit();//트랜잭션 커밋
 
         } catch (Exception e) {
